@@ -2,6 +2,9 @@ import logging
 import re
 import math
 import copy
+from prob_book.distributions import poisson
+
+logger = logging.getLogger(__name__)
 
 constants =[
     {"name":"π","val":math.pi},
@@ -89,13 +92,13 @@ functions = {
     },
     "~": {
         "n":2,
-        "func": lambda x,y: print("{} {}".format(x,y)),
+        "func": lambda x,y: tilde_define(x,y),
         "level":0,
         "regex_name":"~"
     },
     "Po":{
         "n":1,
-        "func": lambda x: x,
+        "func": lambda x: poisson.Poison(x),
         "level":5,
         "regex_name":"Po"
     }
@@ -116,6 +119,9 @@ unary_operators = {
 }
 
 logger = logging.getLogger(__name__)
+
+def tilde_define(x,y):
+    print("Defining dist {} {}".format(x,y))
 
 def parse_line(calc_line):
     """
@@ -196,7 +202,47 @@ def parse_line(calc_line):
     while f_stack != []:
         rpn_line.append(f_stack.pop())
 
-    print(rpn_line)
     logger.info("RPN line at end of parsing: {}".format(rpn_line))
+    return rpn_line
 
+
+def eval_line(l):
+    global functions, constants
+    eval_stack = []
+    all_vars = copy.copy(constants)
+
+    for c in l:
+        if c in functions:
+            logger.debug("Evaluating function {}".format(c))
+            func = functions[c]
+            args = []
+            for i in range(0, func["n"]):
+                # Retrieve required amount of arguments
+                tmp_val = eval_stack.pop()
+                try:
+                    val = float(tmp_val)
+                except ValueError:
+                    # Likely a variable definition
+                    val = tmp_val
+                except TypeError:
+                    val = tmp_val
+                args.append(val)
+            # Reverse args so first argument would be towards bottom of stack
+            args = args[::-1]
+            logger.debug("Using args: {}".format(args))
+            val = func["func"](*args)
+            eval_stack.append(val)
+            logger.debug("Adding value from function {} to stack".format(val))
+        else:
+
+            logger.info("Adding {} to eval_stack".format(c))
+            # Replace any vars
+            # TODO add ability to multiply vars together like AB
+            for a_var in all_vars:
+                if a_var["name"] in c:
+                    c = c.replace(a_var["name"], str(a_var["val"]))
+
+
+            eval_stack.append(c)
+            logger.debug("eval_stack at {}".format(eval_stack))
 
