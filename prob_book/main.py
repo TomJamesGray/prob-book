@@ -18,6 +18,10 @@ logging_config = {
         "prob_book.parsing": {
             "handlers": ["f_parsing"],
             "level": logging.INFO
+        },
+        "prob_book.prob": {
+            "handlers": ["f_parsing"],
+            "level": logging.INFO
         }
     }
 }
@@ -28,6 +32,7 @@ defined_dists = {}
 
 def main():
     parsing.eval_line(parsing.parse_line("X~Po(1)"))
+    parsing.eval_line(parsing.parse_line("P(X=2)"))
     while True:
         l = input()
         parsing.eval_line(parsing.parse_line(l))

@@ -3,6 +3,8 @@ import re
 import math
 import copy
 from prob_book.distributions import poisson
+from prob_book import main
+from prob_book import prob
 
 logger = logging.getLogger(__name__)
 
@@ -101,6 +103,12 @@ functions = {
         "func": lambda x: poisson.Poison(x),
         "level":5,
         "regex_name":"Po"
+    },
+    "P":{
+        "n":1,
+        "func":lambda x:prob.prob(x),
+        "level":5,
+        "regex_name":"P"
     }
 }
 unary_operators = {
@@ -121,7 +129,8 @@ unary_operators = {
 logger = logging.getLogger(__name__)
 
 def tilde_define(x,y):
-    print("Defining dist {} {}".format(x,y))
+    main.defined_dists[x] = y
+    logger.info("Defined dist {} = {}".format(x,y))
 
 def parse_line(calc_line):
     """

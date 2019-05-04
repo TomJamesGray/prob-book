@@ -1,4 +1,7 @@
-class Poison:
+from prob_book.distributions import base_dist
+
+
+class Poison(base_dist.Distribution):
     def __init__(self,mu):
         self.mu = mu
 
