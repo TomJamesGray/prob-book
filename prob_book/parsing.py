@@ -255,3 +255,7 @@ def eval_line(l):
             eval_stack.append(c)
             logger.debug("eval_stack at {}".format(eval_stack))
 
+    try:
+        return float(eval_stack[0])
+    except TypeError:
+        pass

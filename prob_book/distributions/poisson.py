@@ -1,4 +1,5 @@
 from prob_book.distributions import base_dist
+import math
 
 
 class Poison(base_dist.Distribution):
@@ -7,3 +8,7 @@ class Poison(base_dist.Distribution):
 
     def __repr__(self):
         return "<Poisson Distribution: Mu = {}>".format(self.mu)
+
+    def eq(self,x):
+        print(x)
+        return ((self.mu ** x) * math.e ** (-self.mu))/math.factorial(x)

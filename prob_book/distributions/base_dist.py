@@ -1,6 +1,8 @@
 class Distribution:
+    prob_operations = ["="]
+
     def operator(self,op: str):
         ops = {
-            "equal":self.eq
+            "=":self.eq
         }
         return ops[op]
