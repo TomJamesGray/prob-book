@@ -10,5 +10,4 @@ class Poison(base_dist.Distribution):
         return "<Poisson Distribution: Mu = {}>".format(self.mu)
 
     def eq(self,x):
-        print(x)
         return ((self.mu ** x) * math.e ** (-self.mu))/math.factorial(x)

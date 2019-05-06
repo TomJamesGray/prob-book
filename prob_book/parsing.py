@@ -258,4 +258,4 @@ def eval_line(l):
     try:
         return float(eval_stack[0])
     except (ValueError, TypeError):
-        pass
+        return None

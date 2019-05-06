@@ -31,8 +31,8 @@ logger = logging.getLogger(__name__)
 defined_dists = {}
 
 def main():
-    parsing.eval_line(parsing.parse_line("X~Po(1)"))
-    parsing.eval_line(parsing.parse_line("P(X=2)"))
     while True:
         l = input()
-        parsing.eval_line(parsing.parse_line(l))
+        res = parsing.eval_line(parsing.parse_line(l))
+        if res != None:
+            print(res)
