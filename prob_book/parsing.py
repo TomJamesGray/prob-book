@@ -130,6 +130,7 @@ logger = logging.getLogger(__name__)
 
 def tilde_define(x,y):
     main.defined_dists[x] = y
+    main.defined_dists[x].name = x
     logger.info("Defined dist {} = {}".format(x,y))
 
 def parse_line(calc_line):
