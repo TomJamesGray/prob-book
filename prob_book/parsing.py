@@ -2,6 +2,7 @@ import logging
 import re
 import math
 import copy
+import collections
 from prob_book.distributions import poisson
 from prob_book import main
 from prob_book import prob
@@ -13,104 +14,104 @@ constants =[
     {"name":"e","val":math.e}
 ]
 
-functions = {
-    "+":{
+functions = collections.OrderedDict([
+    ("+",{
         "n":2,
         "func": lambda x,y: x+y,
         "level":2,
         "regex_name":"\+"
-    },
-    "-":{
+    }),
+    ("-",{
         "n":2,
         "func": lambda x,y: x-y,
         "level":2,
         "regex_name":"-"
-    },
-    "*":{
+    }),
+    ("*",{
         "n":2,
         "func":lambda x,y: x*y,
         "level":3,
         "regex_name":"\*"
-    },
-    "/":{
+    }),
+    ("/",{
         "n":2,
         "func":lambda x,y:x/y,
         "level":3,
         "regex_name":"\/"
-    },
-    "^":{
+    }),
+    ("^",{
         "n":2,
         "func":lambda x,y:x**y,
         "level":4,
         "regex_name":"\^"
-    },
-    "(":{
+    }),
+    ("(",{
         "n":0,
         "func":None,
         "level":1,
         "regex_name":"\("
-    },
-    ")":{
+    }),
+    (")",{
         "n":0,
         "func":None,
         "level":1,
         "regex_name":"\)"
-    },
-    "sin":{
+    }),
+    ("sin",{
         "n":1,
         "func":lambda x:math.sin(x),
         "level":5,
         "regex_name":"sin"
-    },
-    "cos": {
+    }),
+    ("cos",{
         "n": 1,
         "func": lambda x: math.cos(x),
         "level": 5,
         "regex_name": "cos"
-    },
-    "tan": {
+    }),
+    ("tan",{
         "n": 1,
         "func": lambda x: math.tan(x),
         "level": 5,
         "regex_name": "tan"
-    },
-    "arcsin": {
+    }),
+    ("arcsin",{
         "n": 1,
         "func": lambda x: math.asin(x),
         "level": 5,
         "regex_name": "arcsin"
-    },
-    "arccos": {
+    }),
+    ("arccos",{
         "n": 1,
         "func": lambda x: math.acos(x),
         "level": 5,
         "regex_name": "arccos"
-    },
-    "arctan": {
+    }),
+    ("arctan",{
         "n": 1,
         "func": lambda x: math.atan(x),
         "level": 5,
         "regex_name": "arctan"
-    },
-    "~": {
+    }),
+    ("~",{
         "n":2,
         "func": lambda x,y: tilde_define(x,y),
         "level":0,
         "regex_name":"~"
-    },
-    "Po":{
+    }),
+    ("Po",{
         "n":1,
         "func": lambda x: poisson.Poison(x),
         "level":5,
         "regex_name":"Po"
-    },
-    "P":{
+    }),
+    ("P",{
         "n":1,
         "func":lambda x:prob.prob(x),
         "level":5,
         "regex_name":"P"
-    }
-}
+    })
+])
 unary_operators = {
     "-":{
             "n": 1,
