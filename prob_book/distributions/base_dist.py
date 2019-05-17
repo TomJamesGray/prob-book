@@ -5,14 +5,6 @@ logger = logging.getLogger(__name__)
 
 
 class Distribution:
-    prob_operations = ["="]
-
-    def operator(self,op: str):
-        ops = {
-            "=":self.eq
-        }
-        return ops[op]
-
     def prob_line(self,l: str):
         stmt_split = None
         # Find the operation
