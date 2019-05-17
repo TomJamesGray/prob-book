@@ -19,7 +19,11 @@ logging_config = {
             "handlers": ["f_parsing"],
             "level": logging.INFO
         },
-        "prob_book.prob": {
+        "prob_book.base_dist": {
+            "handlers": ["f_parsing"],
+            "level": logging.INFO
+        },
+        "prob_book.distributions.prob": {
             "handlers": ["f_parsing"],
             "level": logging.INFO
         }
