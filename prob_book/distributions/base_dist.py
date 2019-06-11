@@ -26,6 +26,24 @@ class Distribution:
 
             else:
                 return None
+        elif ">=" in l:
+            stmt_split = l.split(">=")
+            if len(stmt_split) != 2:
+                logger.error("Incorrect amount of elements in split statement {}".format(stmt_split))
+                return False
+
+            if stmt_split[0] == self.name:
+                result = self.greater_eq(parsing.eval_line(parsing.parse_line(stmt_split[1])))
+                logger.info("Result after evaluation {}".format(result))
+                return result
+
+            elif stmt_split[1] == self.name:
+                result = self.less_eq(parsing.eval_line(parsing.parse_line(stmt_split[0])))
+                logger.info("Result after evaluation {}".format(result))
+                return result
+
+            else:
+                return None
 
         elif "=" in l:
             stmt_split = l.split("=")

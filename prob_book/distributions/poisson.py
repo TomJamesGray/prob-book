@@ -16,4 +16,4 @@ class Poison(base_dist.Distribution):
         return sum([self.eq(y) for y in range(0,int(x+1))])
 
     def greater_eq(self,x):
-        return self.less_eq(x-1)
+        return 1-self.less_eq(x-1)
