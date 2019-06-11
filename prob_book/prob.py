@@ -9,8 +9,7 @@ def prob(stmt):
     logger.info(stmt)
     dist = None
     for i,c in enumerate(stmt):
-        if c in main.defined_dists.keys() and stmt[i-1] not in string.ascii_letters \
-                and stmt[i+1] not in string.ascii_letters:
+        if c in main.defined_dists.keys():
             dist = main.defined_dists[c]
             dist_name = c
 
