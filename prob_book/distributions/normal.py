@@ -15,14 +15,17 @@ class Normal(base_dist.Distribution):
     def __repr__(self):
         return "<Normal Distribution: Mu = {}, Var = {}>".format(self.mu,self.var)
 
+    def normalise(self,x):
+        return (x-self.mu)/math.sqrt(self.var)
+
     def less_eq(self,x):
-        return phi(x)
+        return phi(self.normalise(x))
 
     def less(self,x):
-        return phi(x)
+        return phi(self.normalise(x))
 
     def greater_eq(self,x):
-        return 1-phi(x)
+        return 1-phi(self.normalise(x))
 
     def greater(self,x):
-        return 1-phi(x)
+        return 1-phi(self.normalise(x))
