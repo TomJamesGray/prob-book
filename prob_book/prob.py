@@ -1,7 +1,5 @@
 from prob_book import main
-from prob_book import parsing
 import logging
-import string
 
 logger = logging.getLogger(__name__)
 

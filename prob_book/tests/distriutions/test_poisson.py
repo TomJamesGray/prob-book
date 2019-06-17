@@ -9,3 +9,8 @@ def test_prb_less_eq():
     # Test the poisson less than or equals operation
     dist = Poison(2)
     assert abs(dist.less_eq(3) - 0.857123) < 0.0001
+
+def test_prb_greater():
+    # Test the poisson greater than operation
+    dist = Poison(2)
+    assert abs(dist.greater(3)-0.14288) < 0.0001

@@ -3,7 +3,7 @@ import re
 import math
 import copy
 import collections
-from prob_book.distributions import poisson
+from prob_book.distributions import poisson,normal
 from prob_book import main
 from prob_book import prob
 
@@ -57,6 +57,12 @@ functions = collections.OrderedDict([
         "level":1,
         "regex_name":"\)"
     }),
+    (",",{
+        "n":0,
+        "func":None,
+        "level":1,
+        "regex_name":","
+    }),
     ("sin",{
         "n":1,
         "func":lambda x:math.sin(x),
@@ -104,6 +110,12 @@ functions = collections.OrderedDict([
         "func": lambda x: poisson.Poison(x),
         "level":5,
         "regex_name":"Po"
+    }),
+    ("N",{
+       "n":2,
+        "func":lambda x,y:normal.Normal(x,y),
+        "level":5,
+        "regex_name":"N"
     }),
     ("P",{
         "n":1,
@@ -180,6 +192,8 @@ def parse_line(calc_line):
                 f_stack.pop()
                 logger.debug("f_stack after ')': {}".format(f_stack))
                 last_char = c
+            elif c == ",":
+                pass
 
             elif len(f_stack) == 0:
                 logger.debug("Appending function {} to empty f_stack".format(c))
