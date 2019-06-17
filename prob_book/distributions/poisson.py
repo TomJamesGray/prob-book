@@ -17,3 +17,9 @@ class Poison(base_dist.Distribution):
 
     def greater_eq(self,x):
         return 1-self.less_eq(x-1)
+
+    def greater(self,x):
+        return 1-self.less_eq(x)
+
+    def less(self,x):
+        return self.less_eq(x-1)
