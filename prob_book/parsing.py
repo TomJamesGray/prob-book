@@ -3,7 +3,7 @@ import re
 import math
 import copy
 import collections
-from prob_book.distributions import poisson,normal
+from prob_book.distributions import poisson,normal,binomial
 from prob_book import main
 from prob_book import prob
 
@@ -116,6 +116,12 @@ functions = collections.OrderedDict([
         "func":lambda x,y:normal.Normal(x,y),
         "level":5,
         "regex_name":"N"
+    }),
+    ("B",{
+        "n":2,
+        "func":lambda x,y:binomial.Binomial(x,y),
+        "level":5,
+        "regex_name":"B"
     }),
     ("P",{
         "n":1,
