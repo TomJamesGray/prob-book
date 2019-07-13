@@ -1,11 +1,11 @@
-from prob_book.distributions import base_dist
+from prob_book.distributions import discrete_dist
 import math
 
 
 def nCr(n,r):
     return math.factorial(n)/(math.factorial(r) * math.factorial(n-r))
 
-class Binomial(base_dist.Distribution):
+class Binomial(discrete_dist.DiscreteDist):
     def __init__(self,n,p):
         self.n = n
         self.p = p
