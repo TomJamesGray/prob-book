@@ -1,7 +1,10 @@
+import math
 from prob_book.distributions import base_dist
 
 class DiscreteDist(base_dist.Distribution):
     def less_eq(self,x):
+        if int(x+1) < 0:
+            return 0
         return sum([self.eq(y) for y in range(0,int(x+1))])
 
     def greater_eq(self,x):
@@ -11,4 +14,6 @@ class DiscreteDist(base_dist.Distribution):
         return 1-self.less_eq(x)
 
     def less(self,x):
-        return self.less_eq(x-1)
+        if x <= 0:
+            return 0
+        return self.less_eq(math.ceil(x)-1)
