@@ -3,5 +3,5 @@ Interactive python shell to calculate probabilities for common statisitcal
 distributions
 
 ## TODO
-* Handle negative numbers in parsing of P(____)
+* ~~Handle negative numbers in parsing of P(____)~~
 * Improve error handling for distributions

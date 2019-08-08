@@ -42,8 +42,10 @@ def main():
             res = parsing.eval_line(parsing.parse_line(l))
         except EqualityForCtsDist:
             print("Equality operation can't be used on continuous distribution")
+            continue
         except MismatchedBrackets:
             print("Closing bracket count doesn't match opening bracket count")
-        finally:
-            if res != None:
-                print(res)
+            continue
+
+        if res != None:
+            print(res)
