@@ -1,6 +1,7 @@
 import logging
 import logging.config
 from prob_book import parsing
+from prob_book.distributions.continuous_dist import EqualityForCtsDist
 
 logging_config = {
     "version": 1,
@@ -37,6 +38,10 @@ defined_dists = {}
 def main():
     while True:
         l = input()
-        res = parsing.eval_line(parsing.parse_line(l))
-        if res != None:
-            print(res)
+        try:
+            res = parsing.eval_line(parsing.parse_line(l))
+        except EqualityForCtsDist:
+            print("Equality operation can't be used on continuous distribution")
+        finally:
+            if res != None:
+                print(res)

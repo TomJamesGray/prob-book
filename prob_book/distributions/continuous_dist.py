@@ -1,5 +1,8 @@
 from prob_book.distributions import base_dist
 
+class EqualityForCtsDist(TypeError):
+    pass
+
 class ContinuousDist(base_dist.Distribution):
     def less_eq(self,x):
         return self.cdf(x)
@@ -12,3 +15,6 @@ class ContinuousDist(base_dist.Distribution):
 
     def greater(self,x):
         return 1-self.cdf(x)
+
+    def eq(self,_):
+        raise EqualityForCtsDist("Equality operation for continutous distribution can't exist")
