@@ -128,6 +128,12 @@ functions = collections.OrderedDict([
         "func":lambda x:prob.prob(x),
         "level":5,
         "regex_name":"P"
+    }),
+    ("<",{
+        "n":2,
+        "func":lambda x,y:"{}<{}".format(x,y),
+        "level":1.5,
+        "regex_name":"<"
     })
 ])
 unary_operators = {
