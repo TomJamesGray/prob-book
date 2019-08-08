@@ -6,6 +6,7 @@ import collections
 from prob_book.distributions import poisson,normal,binomial
 from prob_book import main
 from prob_book import prob
+from prob_book.exceptions import MismatchedBrackets
 
 logger = logging.getLogger(__name__)
 
@@ -190,6 +191,9 @@ def parse_line(calc_line):
     :return:
     """
     global functions,unary_operators
+    # Check if brackets are mismatched
+    if calc_line.count("(") != calc_line.count(")"):
+        raise MismatchedBrackets("Closing bracket count doesn't match opening bracket count")
     f_stack = []
     rpn_line = []
     last_char = None

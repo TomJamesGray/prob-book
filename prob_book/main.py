@@ -1,7 +1,7 @@
 import logging
 import logging.config
 from prob_book import parsing
-from prob_book.distributions.continuous_dist import EqualityForCtsDist
+from prob_book.exceptions import *
 
 logging_config = {
     "version": 1,
@@ -42,6 +42,8 @@ def main():
             res = parsing.eval_line(parsing.parse_line(l))
         except EqualityForCtsDist:
             print("Equality operation can't be used on continuous distribution")
+        except MismatchedBrackets:
+            print("Closing bracket count doesn't match opening bracket count")
         finally:
             if res != None:
                 print(res)
