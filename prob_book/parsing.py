@@ -278,6 +278,6 @@ def eval_line(l):
             logger.debug("eval_stack at {}".format(eval_stack))
 
     try:
-        return float(eval_stack[0])
+        return round(float(eval_stack[0]),5)
     except (ValueError, TypeError):
         return None
