@@ -129,12 +129,36 @@ functions = collections.OrderedDict([
         "level":5,
         "regex_name":"P"
     }),
+    ("=",{
+        "n":2,
+        "func":lambda x,y:"{}={}".format(x,y),
+        "level":1.5,
+        "regex_name":"="
+    }),
+    ("<=",{
+        "n":2,
+        "func":lambda x,y:"{}<={}".format(x,y),
+        "level":1.5,
+        "regex_name":"<="
+    }),
+    (">=",{
+        "n":2,
+        "func":lambda x,y:"{}>={}".format(x,y),
+        "level":1.5,
+        "regex_name":">="
+    }),
     ("<",{
         "n":2,
         "func":lambda x,y:"{}<{}".format(x,y),
         "level":1.5,
         "regex_name":"<"
-    })
+    }),
+    (">",{
+        "n":2,
+        "func":lambda x,y:"{}>{}".format(x,y),
+        "level":1.5,
+        "regex_name":">"
+    }),
 ])
 unary_operators = {
     "-":{
