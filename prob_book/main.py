@@ -36,6 +36,7 @@ logger = logging.getLogger(__name__)
 defined_dists = {}
 
 def main():
+    dev = False
     while True:
         l = input()
         try:
@@ -46,6 +47,12 @@ def main():
         except MismatchedBrackets:
             print("Closing bracket count doesn't match opening bracket count")
             continue
+        except Exception as e:
+            if dev:
+                raise e
+            else:
+                print(e)
+                continue
 
         if res != None:
             print(res)
