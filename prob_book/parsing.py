@@ -296,7 +296,7 @@ def parse_line(calc_line):
     return rpn_line
 
 
-def eval_line(l):
+def eval_line(l,precision=5):
     global functions, constants
     eval_stack = []
     all_vars = copy.copy(constants)
@@ -337,6 +337,6 @@ def eval_line(l):
             logger.debug("eval_stack at {}".format(eval_stack))
 
     try:
-        return round(float(eval_stack[0]),5)
+        return round(float(eval_stack[0]),precision)
     except (ValueError, TypeError):
         return None
