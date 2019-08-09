@@ -20,3 +20,6 @@ class Binomial(discrete_dist.DiscreteDist):
 
     def var(self):
         return self.n * self.p * (1 - self.p)
+
+    def expectation(self):
+        return self.n * self.p

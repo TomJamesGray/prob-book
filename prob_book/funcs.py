@@ -6,3 +6,10 @@ def variance(dist_name):
     except KeyError:
         raise ValueError("Distribution {} not found".format(dist_name))
     return dist.var()
+
+def expectation(dist_name):
+    try:
+        dist = main.defined_dists[dist_name]
+    except KeyError:
+        raise ValueError("Distribution {} not found".format(dist_name))
+    return dist.expectation()

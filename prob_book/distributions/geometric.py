@@ -16,3 +16,6 @@ class Geometric(discrete_dist.DiscreteDist):
 
     def var(self):
         return ((1-self.p) / (self.p ** 2))
+
+    def expectation(self):
+        return 1/self.p

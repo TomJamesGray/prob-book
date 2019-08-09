@@ -143,6 +143,12 @@ functions = collections.OrderedDict([
         "level":5,
         "regex_name":"Var"
     }),
+    ("E",{
+       "n":1,
+        "func":lambda x:funcs.expectation(x),
+        "level":5,
+        "regex_name":"E"
+    }),
     ("=",{
         "n":2,
         "func":lambda x,y:"{}={}".format(x,y),

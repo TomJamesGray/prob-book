@@ -14,3 +14,6 @@ class Poison(discrete_dist.DiscreteDist):
 
     def var(self):
         return self.mu
+
+    def expectation(self):
+        return self.mu

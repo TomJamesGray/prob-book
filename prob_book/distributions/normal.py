@@ -7,16 +7,20 @@ logger = logging.getLogger(__name__)
 def phi(x):
     return (1 + math.erf(x / math.sqrt(2))) / 2
 
+
 class Normal(continuous_dist.ContinuousDist):
     def __init__(self,mu,var):
         self.mu = mu
-        self.var = var
+        self._var = var
 
     def __repr__(self):
-        return "<Normal Distribution: Mu = {}, Var = {}>".format(self.mu,self.var)
+        return "<Normal Distribution: Mu = {}, Var = {}>".format(self.mu,self._var)
 
     def cdf(self,x):
-        return phi((x-self.mu)/math.sqrt(self.var))
+        return phi((x-self.mu)/math.sqrt(self._var))
 
     def var(self):
-        return self.var
+        return self._var
+
+    def expectation(self):
+        return self.mu
