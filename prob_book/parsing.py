@@ -3,7 +3,7 @@ import re
 import math
 import copy
 import collections
-from prob_book.distributions import poisson,normal,binomial,geometric
+from prob_book.distributions import poisson,normal,binomial,geometric,exponential
 from prob_book import main
 from prob_book import prob
 from prob_book.exceptions import MismatchedBrackets
@@ -118,6 +118,12 @@ functions = collections.OrderedDict([
         "func": lambda x:  geometric.Geometric(x),
         "level":5,
         "regex_name":"Geo"
+    }),
+    ("Exp",{
+       "n":1,
+        "func": lambda x: exponential.Exponential(x),
+        "level":5,
+        "regex_name":"Exp"
     }),
     ("N",{
        "n":2,

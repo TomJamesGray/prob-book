@@ -5,3 +5,4 @@ distributions
 ## TODO
 * ~~Handle negative numbers in parsing of P(____)~~
 * Improve error handling for distributions
+* Implement printing of distributions in calculator when just the name is input
