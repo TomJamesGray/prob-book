@@ -12,6 +12,8 @@ class Exponential(continuous_dist.ContinuousDist):
         return "<Exponential Distribution: Mu = {}>".format(self.mu)
 
     def cdf(self,x):
+        if x < 0:
+            return 0
         return 1-math.exp(-self.mu * x)
 
     def var(self):
