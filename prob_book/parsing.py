@@ -155,6 +155,12 @@ functions = collections.OrderedDict([
         "level":5,
         "regex_name":"E"
     }),
+    ("Info",{
+       "n":1,
+        "func":lambda x:funcs.info(x),
+        "level":5,
+        "regex_name":"Info"
+    }),
     ("=",{
         "n":2,
         "func":lambda x,y:"{}={}".format(x,y),
@@ -338,5 +344,7 @@ def eval_line(l,precision=5):
 
     try:
         return round(float(eval_stack[0]),precision)
-    except (ValueError, TypeError):
+    except ValueError:
+        return eval_stack[0]
+    except TypeError:
         return None
