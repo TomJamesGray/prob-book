@@ -28,6 +28,10 @@ logging_config = {
         "prob_book.distributions.prob": {
             "handlers": ["f_parsing"],
             "level": logging.INFO
+        },
+        "prob_book.main":{
+            "handlers":["f_parsing"],
+            "level":logging.INFO
         }
     }
 }
@@ -42,6 +46,13 @@ def main():
                                                                           logging and doesn't throttle all exceptions")
     parser.add_argument("--precision",action="store",type=int,default=6)
     results = parser.parse_args()
+
+    # Reduce logging if devel is false
+    # global logger
+    if not results.devel:
+        for x in logger.handlers:
+            x.setLevel(logging.ERROR)
+
 
     while True:
         l = input()
