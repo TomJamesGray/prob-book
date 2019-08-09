@@ -40,6 +40,15 @@ logger = logging.getLogger(__name__)
 
 defined_dists = {}
 
+class ANSICols:
+    RED = "\033[1;31m"
+    BLUE = "\033[1;34m"
+    CYAN = "\033[1;36m"
+    GREEN = "\033[0;32m"
+    RESET = "\033[0;0m"
+    BOLD = "\033[;1m"
+    REVERSE = "\033[;7m"
+
 def main():
     parser = argparse.ArgumentParser(description="Interactive python shell for probability and other calculations")
     parser.add_argument("--devel",action="store_true",default=False,help="Enables development mode which shows more \
@@ -55,21 +64,21 @@ def main():
 
 
     while True:
-        l = input()
+        l = input(">>> ")
         try:
             res = parsing.eval_line(parsing.parse_line(l),results.precision)
         except EqualityForCtsDist:
-            print("Equality operation can't be used on continuous distribution")
+            print("{}Equality operation can't be used on continuous distribution{}".format(ANSICols.RED,ANSICols.RESET))
             continue
         except MismatchedBrackets:
-            print("Closing bracket count doesn't match opening bracket count")
+            print("{}Closing bracket count doesn't match opening bracket count{}".format(ANSICols.RED,ANSICols.RESET))
             continue
         except Exception as e:
             if results.devel:
                 raise e
             else:
-                print(e)
+                print("{}{}{}".format(ANSICols.RED,e,ANSICols.RESET))
                 continue
 
         if res != None:
-            print(res)
+            print("{}{}{}".format(ANSICols.GREEN,res,ANSICols.RESET))
