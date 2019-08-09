@@ -17,3 +17,6 @@ class Binomial(discrete_dist.DiscreteDist):
         if x != int(x):
             raise ValueError("Binomial distribution can only be equal to integer values")
         return nCr(self.n,x) * self.p ** x * (1-self.p) ** (self.n - x)
+
+    def var(self):
+        return self.n * self.p * (1 - self.p)

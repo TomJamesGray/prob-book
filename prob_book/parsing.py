@@ -7,6 +7,7 @@ from prob_book.distributions import poisson,normal,binomial,geometric
 from prob_book import main
 from prob_book import prob
 from prob_book.exceptions import MismatchedBrackets
+from prob_book import funcs
 
 logger = logging.getLogger(__name__)
 
@@ -135,6 +136,12 @@ functions = collections.OrderedDict([
         "func":lambda x:prob.prob(x),
         "level":5,
         "regex_name":"P"
+    }),
+    ("Var",{
+       "n":1,
+        "func":lambda x: funcs.variance(x),
+        "level":5,
+        "regex_name":"Var"
     }),
     ("=",{
         "n":2,

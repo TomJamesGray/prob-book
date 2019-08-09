@@ -11,3 +11,6 @@ class Poison(discrete_dist.DiscreteDist):
 
     def eq(self,x):
         return ((self.mu ** x) * math.e ** (-self.mu))/math.factorial(x)
+
+    def var(self):
+        return self.mu

@@ -18,3 +18,5 @@ class Normal(continuous_dist.ContinuousDist):
     def cdf(self,x):
         return phi((x-self.mu)/math.sqrt(self.var))
 
+    def var(self):
+        return self.var

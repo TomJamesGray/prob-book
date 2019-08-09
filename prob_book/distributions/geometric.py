@@ -13,3 +13,6 @@ class Geometric(discrete_dist.DiscreteDist):
         if x == 0:
             return 0
         return (1-self.p) ** (x-1) * self.p
+
+    def var(self):
+        return ((1-self.p) / (self.p ** 2))

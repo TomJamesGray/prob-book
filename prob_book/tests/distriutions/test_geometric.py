@@ -31,3 +31,9 @@ def test_prb_greater_eq():
     print(p)
     dist = Geometric(p)
     assert abs(dist.greater_eq(3) - (1 - ((1-p)*p + p))) < 0.0001
+
+def test_var():
+    p = random.random()
+    print(p)
+    dist = Geometric(p)
+    assert abs(dist.var() - (1 - p)/(p**2)) < 0.0001
