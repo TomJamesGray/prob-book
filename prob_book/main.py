@@ -3,7 +3,6 @@ import argparse
 import logging.config
 from prob_book import parsing
 from prob_book.exceptions import *
-
 logging_config = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -17,6 +16,10 @@ logging_config = {
             "level": logging.INFO}
     },
     "loggers": {
+        "":{
+            "handlers":["f_parsing"],
+            "level":logging.INFO
+        },
         "prob_book.parsing": {
             "handlers": ["f_parsing"],
             "level": logging.DEBUG
@@ -28,17 +31,15 @@ logging_config = {
         "prob_book.distributions.prob": {
             "handlers": ["f_parsing"],
             "level": logging.INFO
-        },
-        "prob_book.main":{
-            "handlers":["f_parsing"],
-            "level":logging.INFO
         }
     }
 }
+
 logging.config.dictConfig(logging_config)
 logger = logging.getLogger(__name__)
 
 defined_dists = {}
+defined_vars = {}
 
 class ANSICols:
     RED = "\033[1;31m"

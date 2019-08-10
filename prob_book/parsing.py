@@ -161,6 +161,12 @@ functions = collections.OrderedDict([
         "level":5,
         "regex_name":"Info"
     }),
+    (":=",{
+        "n":2,
+        "func":lambda x,y:funcs.define(x,y),
+        "level":0,
+        "regex_name":":="
+    }),
     ("=",{
         "n":2,
         "func":lambda x,y:"{}={}".format(x,y),
@@ -318,10 +324,18 @@ def eval_line(l,precision=5):
                 try:
                     val = float(tmp_val)
                 except ValueError:
-                    # Likely a variable definition
-                    val = tmp_val
+                    # Likely a variable being used
+                    print("Val error {} {} {}".format(tmp_val,main.defined_vars,tmp_val in main.defined_vars.keys()))
+                    if tmp_val in main.defined_vars.keys():
+                        val = main.defined_vars[tmp_val]
+                        print("jeff {}".format(val))
+                    else:
+                        # Likely a variable definition
+                        val = tmp_val
+
                 except TypeError:
                     val = tmp_val
+
                 args.append(val)
             # Reverse args so first argument would be towards bottom of stack
             args = args[::-1]
