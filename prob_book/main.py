@@ -56,7 +56,7 @@ class ANSICols:
 
 def main():
     parser = argparse.ArgumentParser(description="Interactive python shell for probability and other calculations")
-    parser.add_argument("--devel",action="store_true",default=False,help="Enables development mode which shows more "
+    parser.add_argument("--debug",action="store_true",default=False,help="Enables development mode which shows more "
                                                                          "logging and doesn't throttle all exceptions")
     parser.add_argument("--precision",action="store",type=int,default=6,help="Integer value that controls the maximum "
                                                                              "amount of numbers after the decimal point, "
