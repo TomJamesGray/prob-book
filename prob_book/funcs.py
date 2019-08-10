@@ -23,7 +23,6 @@ def info(dist_name):
         dist = main.defined_dists[dist_name]
     except KeyError:
         raise ValueError("Distribution {} not found".format(dist_name))
-    print("Info")
     return dist.__repr__()
 
 def define(x,y):
