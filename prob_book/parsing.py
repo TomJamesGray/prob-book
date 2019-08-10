@@ -238,6 +238,8 @@ def parse_line(calc_line):
     regex_names = []
     for f_name,func in functions.items():
         regex_names.append(func["regex_name"])
+    # Strip spaces from calc_line, if this wasn't done then "x :=2" would define a variable "x " as opposed to "x"
+    calc_line = calc_line.replace(" ","")
 
     f_line = re.split("({})".format("|".join(regex_names)),calc_line)
 
