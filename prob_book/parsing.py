@@ -359,6 +359,10 @@ def eval_line(l,precision=5):
     try:
         return round(float(eval_stack[0]),precision)
     except ValueError:
-        return eval_stack[0]
+        if eval_stack[0] in main.defined_vars.keys() and len(eval_stack) == 1:
+            # Line is just a single variable name so return the value
+            return round(float(main.defined_vars[eval_stack[0]]),precision)
+        else:
+            return eval_stack[0]
     except TypeError:
         return None

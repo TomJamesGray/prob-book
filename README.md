@@ -32,3 +32,6 @@ of 0.3, then compute the probability there are 4 or fewer successes
 * Implement help function for distributions, eg Help(Exp) will tell you the
 parameters for the Exponential dist
 * Fix errors caused by redefining variables
+* Change over to use numpy arrays so you can do vector like calculations
+* Implement plotting of functions and probability distributions
+* Web client?

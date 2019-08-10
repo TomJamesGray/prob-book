@@ -65,7 +65,7 @@ def main():
 
     # Reduce logging if devel is false
     # global logger
-    if not results.devel:
+    if not results.debug:
         for x in logger.handlers:
             x.setLevel(logging.ERROR)
 
