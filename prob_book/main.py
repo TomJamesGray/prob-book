@@ -20,6 +20,10 @@ logging_config = {
             "handlers":["f_parsing"],
             "level":logging.INFO
         },
+        "prob_book.main": {
+            "handlers": ["f_parsing"],
+            "level": logging.INFO
+        },
         "prob_book.parsing": {
             "handlers": ["f_parsing"],
             "level": logging.DEBUG
@@ -64,7 +68,6 @@ def main():
     if not results.devel:
         for x in logger.handlers:
             x.setLevel(logging.ERROR)
-
 
     while True:
         l = input(">>> ")
