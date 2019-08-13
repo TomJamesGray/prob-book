@@ -1,26 +1,22 @@
-?start: statement
+?start: sum
 
-?statement: expr
+?sum: product
+    | sum "+" product -> add
+    | sum "-" product -> sub
 
-?expr: product | sum | literal | func
+?product:atom
+    | product "*" atom -> mul
+    | product "/" atom -> div
 
-?func:NAME "(" [arguments] ")"
+?atom: NAME "(" paramaters? ")" -> func_call
+    | NUMBER -> number
+    | "-" atom -> neg
+    | "(" sum ")"
+    | NAME
 
-arguments: argvalue ("," argvalue)*
+paramaters: paramvalue ("," paramvalue)*
 
-argvalue:literal | NAME
-
-?product:literal
-    | expr "*" literal -> mul
-    | expr "/" literal -> div
-
-?sum: literal
-    | expr "+" expr -> add
-    | expr "-" expr -> sub
-
-?literal: NUMBER -> number
-    | "-" literal -> neg
-    | "(" expr ")"
+paramvalue:atom | sum
 
 %import common.NUMBER
 %import common.WS_INLINE
