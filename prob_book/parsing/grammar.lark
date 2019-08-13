@@ -1,0 +1,29 @@
+?start: statement
+
+?statement: expr
+
+?expr: product | sum | literal | func
+
+?func:NAME "(" [arguments] ")"
+
+arguments: argvalue ("," argvalue)*
+
+argvalue:literal | NAME
+
+?product:literal
+    | expr "*" literal -> mul
+    | expr "/" literal -> div
+
+?sum: literal
+    | expr "+" expr -> add
+    | expr "-" expr -> sub
+
+?literal: NUMBER -> number
+    | "-" literal -> neg
+    | "(" expr ")"
+
+%import common.NUMBER
+%import common.WS_INLINE
+%import common.CNAME -> NAME
+
+%ignore WS_INLINE
