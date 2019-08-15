@@ -1,7 +1,6 @@
 import math
-from prob_book.distributions import base_dist
 
-class DiscreteDist(base_dist.Distribution):
+class DiscreteDist():
     def less_eq(self,x):
         if int(x+1) < 0:
             return 0

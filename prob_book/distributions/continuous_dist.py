@@ -1,7 +1,6 @@
-from prob_book.distributions import base_dist
 from prob_book.exceptions import EqualityForCtsDist
 
-class ContinuousDist(base_dist.Distribution):
+class ContinuousDist():
     def less_eq(self,x):
         return self.cdf(x)
 

@@ -12,15 +12,15 @@ logger = logging.getLogger(__name__)
 funcs = {
     "sin":{
         "n": 1,
-        "func": lambda x: math.sin(x),
+        "func": lambda x: np.sin(x),
     },
     "cos": {
         "n": 1,
-        "func": lambda x: math.cos(x),
+        "func": lambda x: np.cos(x),
     },
     "tan": {
         "n": 1,
-        "func": lambda x: math.tan(x)
+        "func": lambda x: np.tan(x)
     },
     "B": {
         "n":2,
