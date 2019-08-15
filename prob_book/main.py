@@ -80,7 +80,7 @@ def main():
             print("{}Closing bracket count doesn't match opening bracket count{}".format(ANSICols.RED,ANSICols.RESET))
             continue
         except Exception as e:
-            if results.devel:
+            if results.debug:
                 raise e
             else:
                 print("{}{}{}".format(ANSICols.RED,e,ANSICols.RESET))
