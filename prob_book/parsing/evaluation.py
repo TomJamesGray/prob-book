@@ -5,6 +5,7 @@ from lark import Transformer
 from lark import v_args
 from prob_book.distributions import binomial,exponential,poisson,geometric,normal
 from prob_book import main
+from prob_book.plotting import plot
 from prob_book import extra_funcs
 
 logger = logging.getLogger(__name__)
@@ -25,6 +26,10 @@ funcs = {
     "range":{
         "n":(2,3),
         "func":lambda *args:np.arange(*args)
+    },
+    "plot":{
+        "n":(2,3),
+        "func":lambda *args:plot.plot(args)
     },
     "B": {
         "n":2,
