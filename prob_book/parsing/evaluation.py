@@ -22,6 +22,10 @@ funcs = {
         "n": 1,
         "func": lambda x: np.tan(x)
     },
+    "range":{
+        "n":(2,3),
+        "func":lambda *args:np.arange(*args)
+    },
     "B": {
         "n":2,
         "func":lambda n,p: binomial.Binomial(n,p)
