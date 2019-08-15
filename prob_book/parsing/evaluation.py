@@ -4,6 +4,7 @@ from lark import Transformer
 from lark import v_args
 from prob_book.distributions import binomial,exponential,poisson,geometric,normal
 from prob_book import main
+from prob_book import extra_funcs
 
 logger = logging.getLogger(__name__)
 
@@ -11,20 +12,15 @@ funcs = {
     "sin":{
         "n": 1,
         "func": lambda x: math.sin(x),
-        "level": 5,
-        "regex_name": "sin"
     },
     "cos": {
         "n": 1,
         "func": lambda x: math.cos(x),
-        "level": 5,
-        "regex_name": "cos"
     },
     "tan": {
         "n": 1,
-        "func": lambda x: math.tan(x),
-        "level": 5,
-        "regex_name": "tan"},
+        "func": lambda x: math.tan(x)
+    },
     "B": {
         "n":2,
         "func":lambda n,p: binomial.Binomial(n,p)
@@ -44,6 +40,18 @@ funcs = {
     "Exp": {
         "n":1,
         "func":lambda x: exponential.Exponential(x)
+    },
+    "Var":{
+        "n":1,
+        "func":lambda x: extra_funcs.variance(x)
+    },
+    "E":{
+       "n":1,
+        "func":lambda x:extra_funcs.expectation(x)
+    },
+    "Info":{
+       "n":1,
+        "func":lambda x:extra_funcs.info(x)
     }
 }
 
