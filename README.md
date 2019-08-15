@@ -35,3 +35,4 @@ parameters for the Exponential dist
 * Change over to use numpy arrays so you can do vector like calculations
 * Implement plotting of functions and probability distributions
 * Web client?
+* Error handling when incorrect number of arguments supplied to function

@@ -1,5 +1,6 @@
 import logging
 import argparse
+import numpy as np
 import logging.config
 from prob_book.parsing import parser
 from prob_book.exceptions import *
@@ -86,5 +87,8 @@ def main():
                 print("{}{}{}".format(ANSICols.RED,e,ANSICols.RESET))
                 continue
 
-        if res != None:
+        if type(res) == np.ndarray:
+            print("{}{}{}".format(ANSICols.GREEN, res, ANSICols.RESET))
+        elif res != None:
+            # Numpy arrays don't like being tested with None
             print("{}{}{}".format(ANSICols.GREEN,res,ANSICols.RESET))
