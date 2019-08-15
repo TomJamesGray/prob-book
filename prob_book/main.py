@@ -1,7 +1,7 @@
 import logging
 import argparse
 import logging.config
-from prob_book import parsing
+from prob_book.parsing import parser
 from prob_book.exceptions import *
 logging_config = {
     "version": 1,
@@ -55,13 +55,13 @@ class ANSICols:
     REVERSE = "\033[;7m"
 
 def main():
-    parser = argparse.ArgumentParser(description="Interactive python shell for probability and other calculations")
-    parser.add_argument("--debug",action="store_true",default=False,help="Enables development mode which shows more "
+    arg_parse = argparse.ArgumentParser(description="Interactive python shell for probability and other calculations")
+    arg_parse.add_argument("--debug",action="store_true",default=False,help="Enables development mode which shows more "
                                                                          "logging and doesn't throttle all exceptions")
-    parser.add_argument("--precision",action="store",type=int,default=6,help="Integer value that controls the maximum "
+    arg_parse.add_argument("--precision",action="store",type=int,default=6,help="Integer value that controls the maximum "
                                                                              "amount of numbers after the decimal point, "
                                                                              "defaults to 6")
-    results = parser.parse_args()
+    results = arg_parse.parse_args()
 
     # Reduce logging if devel is false
     # global logger
@@ -72,7 +72,7 @@ def main():
     while True:
         l = input(">>> ")
         try:
-            res = parsing.eval_line(parsing.parse_line(l),results.precision)
+            res = parser.parse(l)
         except EqualityForCtsDist:
             print("{}Equality operation can't be used on continuous distribution{}".format(ANSICols.RED,ANSICols.RESET))
             continue

@@ -2,7 +2,7 @@ from prob_book.distributions import discrete_dist
 import math
 
 
-class Poison(discrete_dist.DiscreteDist):
+class Poisson(discrete_dist.DiscreteDist):
     def __init__(self,mu):
         self.mu = mu
 
