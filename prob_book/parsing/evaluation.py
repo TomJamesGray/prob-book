@@ -49,3 +49,28 @@ class EvalLine(Transformer):
         main.defined_dists[name].name = name
         logger.info("Defined dist {} = {}".format(name, dist))
 
+    def find_dist(self,name):
+        try:
+            dist = main.defined_dists[name]
+        except KeyError:
+            e = "No dist found for prob function with stmt {}".format(stmt)
+            logger.error(e)
+            raise ValueError(e)
+        return dist
+
+
+    def prob_eq(self,dist,val):
+        return self.find_dist(dist).eq(val)
+
+    def prob_gt(self,dist,val):
+        return self.find_dist(dist).greater(val)
+
+    def prob_gt_eq(self,dist,val):
+        return self.find_dist(dist).greater_eq(val)
+
+    def prob_lt(self,dist,val):
+        return self.find_dist(dist).less(val)
+
+    def prob_lt_eq(self,dist,val):
+        return self.find_dist(dist).less_eq(val)
+
