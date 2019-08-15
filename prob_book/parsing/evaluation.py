@@ -1,6 +1,11 @@
 import math
+import logging
 from lark import Transformer
 from lark import v_args
+from prob_book.distributions import binomial,exponential,poisson,geometric,normal
+from prob_book import main
+
+logger = logging.getLogger(__name__)
 
 funcs = {
     "sin":{
@@ -19,7 +24,11 @@ funcs = {
         "n": 1,
         "func": lambda x: math.tan(x),
         "level": 5,
-        "regex_name": "tan"}
+        "regex_name": "tan"},
+    "B": {
+        "n":2,
+        "func":lambda n,p: binomial.Binomial(n,p)
+    }
 }
 
 @v_args(inline=True)
@@ -29,9 +38,14 @@ class EvalLine(Transformer):
 
     def func_call(self,name,*args):
         f = funcs[name]["func"]
-        print(args)
         unpacked = []
         for val in args[0].children:
             unpacked.append(val.children[0])
         print(unpacked)
         return f(*unpacked)
+
+    def tilde(self,name,dist):
+        main.defined_dists[name] = dist
+        main.defined_dists[name].name = name
+        logger.info("Defined dist {} = {}".format(name, dist))
+

@@ -1,4 +1,5 @@
 ?start: sum
+    | NAME "~" sum -> tilde
 
 ?sum: product
     | sum "+" product -> add
