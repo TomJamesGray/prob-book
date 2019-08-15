@@ -1,5 +1,6 @@
-from prob_book.distributions import discrete_dist
 import math
+import numpy as np
+from prob_book.distributions import discrete_dist
 
 
 class Poisson(discrete_dist.DiscreteDist):

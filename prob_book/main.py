@@ -1,5 +1,6 @@
 import logging
 import argparse
+import numpy as np
 import logging.config
 from prob_book.parsing import parser
 from prob_book.exceptions import *
@@ -80,11 +81,14 @@ def main():
             print("{}Closing bracket count doesn't match opening bracket count{}".format(ANSICols.RED,ANSICols.RESET))
             continue
         except Exception as e:
-            if results.devel:
+            if results.debug:
                 raise e
             else:
                 print("{}{}{}".format(ANSICols.RED,e,ANSICols.RESET))
                 continue
 
-        if res != None:
+        if type(res) == np.ndarray:
+            print("{}{}{}".format(ANSICols.GREEN, res, ANSICols.RESET))
+        elif res != None:
+            # Numpy arrays don't like being tested with None
             print("{}{}{}".format(ANSICols.GREEN,res,ANSICols.RESET))
