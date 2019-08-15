@@ -127,18 +127,29 @@ class EvalLine(Transformer):
             raise ValueError(e)
         return dist
 
+    def handle_dist(self,fn,val):
+        """
+        Handles evaluating functions where the argument could be an individual number or a list of numbers
+        :param fn: Function
+        :param val: Single number or iterable object containing numbers
+        """
+        if type(val) in (int,float):
+            return fn(val)
+        else:
+            return [fn(x) for x in val]
+
     def prob_eq(self,dist,val):
-        return self.find_dist(dist).eq(val)
+        return self.handle_dist(self.find_dist(dist).eq,val)
 
     def prob_gt(self,dist,val):
-        return self.find_dist(dist).greater(val)
+        return self.handle_dist(self.find_dist(dist).greater, val)
 
     def prob_gt_eq(self,dist,val):
-        return self.find_dist(dist).greater_eq(val)
+        return self.handle_dist(self.find_dist(dist).greater_eq, val)
 
     def prob_lt(self,dist,val):
-        return self.find_dist(dist).less(val)
+        return self.handle_dist(self.find_dist(dist).less, val)
 
     def prob_lt_eq(self,dist,val):
-        return self.find_dist(dist).less_eq(val)
+        return self.handle_dist(self.find_dist(dist).less_eq, val)
 
