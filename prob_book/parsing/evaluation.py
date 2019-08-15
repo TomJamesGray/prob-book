@@ -29,7 +29,7 @@ funcs = {
     },
     "plot":{
         "n":(2,3),
-        "func":lambda *args:plot.plot(args)
+        "func":lambda *args:plot.plot(*args)
     },
     "B": {
         "n":2,
@@ -89,7 +89,6 @@ class EvalLine(Transformer):
         unpacked = []
         for val in self.unpack_args(args):
             unpacked.append(val)
-        print(unpacked)
         return f(*unpacked)
 
     def tilde(self,name,dist):
@@ -99,9 +98,27 @@ class EvalLine(Transformer):
         :param dist: Object referring to the distribution
         :return: None
         """
-        main.defined_dists[name] = dist
-        main.defined_dists[name].name = name
+        main.defined_vars[name] = dist
+        main.defined_vars[name].name = name
         logger.info("Defined dist {} = {}".format(name, dist))
+
+    def var_def(self,name,val):
+        """
+        Handles defining variables
+        :param name: Variable name
+        :param val: Value to be assigned
+        :return: None
+        """
+        main.defined_vars[name] = val
+        # logger.info("Defined var {} = {}".format(name, val))
+
+    def get_var(self,name):
+        """
+        Retrieves variable
+        :param name: Variable name
+        :return: Varianble value
+        """
+        return main.defined_vars[name]
 
     def gen_arr(self,*args):
         """
@@ -125,9 +142,9 @@ class EvalLine(Transformer):
         :return: Distribution object
         """
         try:
-            dist = main.defined_dists[name]
+            dist = main.defined_vars[name]
         except KeyError:
-            e = "No {} dist found".format(x)
+            e = "No {} dist found".format(name)
             logger.error(e)
             raise ValueError(e)
         return dist

@@ -1,5 +1,6 @@
 ?start: sum
     | NAME "~" sum -> tilde
+    | NAME "=" sum -> var_def
 
 ?sum: product
     | sum "+" product -> add
@@ -15,7 +16,7 @@
     | NUMBER -> number
     | "-" atom -> neg
     | "(" sum ")"
-    | NAME
+    | NAME -> get_var
 
 prob_func: "P(" NAME "=" sum ")" -> prob_eq
     | "P(" NAME ">" sum ")" -> prob_gt
