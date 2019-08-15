@@ -31,6 +31,10 @@ funcs = {
         "n":(2,3),
         "func":lambda *args:plot.plot(*args)
     },
+    "pdf":{
+        "n":2,
+        "func":lambda dist,val:extra_funcs.pdf(dist,val)
+    },
     "B": {
         "n":2,
         "func":lambda n,p: binomial.Binomial(n,p)

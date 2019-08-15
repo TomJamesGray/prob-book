@@ -33,3 +33,9 @@ def define(x,y):
         raise ValueError("Variable name of type {} not str".format(type(x)))
     else:
         raise ValueError("Variable name {} invalid as it is a reserved function name".format(x))
+
+def pdf(dist,val):
+    if hasattr(dist,'pdf'):
+        return dist.pdf(val)
+    else:
+        raise ValueError("Distribution {} has no pdf".format(dist))

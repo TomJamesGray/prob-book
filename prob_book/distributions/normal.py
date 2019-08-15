@@ -19,6 +19,9 @@ class Normal(continuous_dist.ContinuousDist):
     def cdf(self,x):
         return phi((x-self.mu)/math.sqrt(self._var))
 
+    def pdf(self,x):
+        return (1 / math.sqrt(2 * math.pi * self._var)) * math.e ** ((-(x-self.mu) ** 2)/(2 * self._var))
+
     def var(self):
         return self._var
 
