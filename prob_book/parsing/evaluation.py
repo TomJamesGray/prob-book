@@ -28,6 +28,22 @@ funcs = {
     "B": {
         "n":2,
         "func":lambda n,p: binomial.Binomial(n,p)
+    },
+    "Geo": {
+        "n":1,
+        "func":lambda p: geometric.Geometric(p)
+    },
+    "N": {
+        "n":2,
+        "func":lambda mu,sig: normal.Normal(mu,sig)
+    },
+    "Po": {
+        "n":1,
+        "func":lambda x: poisson.Poisson(x)
+    },
+    "Exp": {
+        "n":1,
+        "func":lambda x: exponential.Exponential(x)
     }
 }
 
@@ -53,7 +69,7 @@ class EvalLine(Transformer):
         try:
             dist = main.defined_dists[name]
         except KeyError:
-            e = "No dist found for prob function with stmt {}".format(stmt)
+            e = "No {} dist found".format(x)
             logger.error(e)
             raise ValueError(e)
         return dist
