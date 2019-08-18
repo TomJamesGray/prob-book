@@ -65,7 +65,7 @@ funcs = {
     },
     # Plotting
     "plot":{
-        "n":(2,3),
+        "n":-1,
         "func":lambda *args:plot.plot(*args)
     }
 }
@@ -81,7 +81,10 @@ class EvalLine(Transformer):
         :param x: The *args paramater
         """
         for val in x[0].children:
-            yield val.children[0]
+            if len(val.children) > 1:
+                yield tuple([x for x in val.children])
+            else:
+                yield val.children[0]
 
     def func_call(self,name,*args):
         """
@@ -91,6 +94,7 @@ class EvalLine(Transformer):
         :return: The value of the function called with the specified arguments
         """
         f = funcs[name]["func"]
+        print("args: {}".format(args))
         unpacked = []
         for val in self.unpack_args(args):
             unpacked.append(val)
@@ -180,3 +184,16 @@ class EvalLine(Transformer):
     def prob_lt_eq(self,dist,val):
         return self.handle_dist(self.find_dist(dist).less_eq, val)
 
+
+def extract_kw_args(args):
+    """
+    Extracts KW args and turns them into a dictionary
+    :param args: 2d tuple of form ((TOKEN,VALUE),..)
+    :return: Dictionary with key being token data and value being the value
+    """
+    d = {}
+    for child in args:
+        if len(child) == 2:
+            d[child[0].value] = child[1]
+
+    return d
