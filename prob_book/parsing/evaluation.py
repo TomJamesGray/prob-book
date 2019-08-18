@@ -27,10 +27,6 @@ funcs = {
         "n":(2,3),
         "func":lambda *args:np.arange(*args)
     },
-    "plot":{
-        "n":(2,3),
-        "func":lambda *args:plot.plot(*args)
-    },
     "pdf":{
         "n":2,
         "func":lambda dist,val:extra_funcs.pdf(dist,val)
@@ -66,6 +62,11 @@ funcs = {
     "Info":{
        "n":1,
         "func":lambda x:extra_funcs.info(x)
+    },
+    # Plotting
+    "plot":{
+        "n":(2,3),
+        "func":lambda *args:plot.plot(*args)
     }
 }
 

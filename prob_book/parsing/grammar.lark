@@ -24,7 +24,9 @@ prob_func: "P(" NAME "=" sum ")" -> prob_eq
     | "P(" NAME "<" sum ")" -> prob_lt
     | "P(" NAME "<=" sum ")" -> prob_lt_eq
 
-paramaters: paramvalue ("," paramvalue)*
+paramaters: (paramvalue ("," paramvalue)* ("," kwargs)* | kwargs ("," kwargs)* )
+
+kwargs: NAME "=" paramvalue
 
 paramvalue:atom | sum
 
