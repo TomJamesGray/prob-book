@@ -10,6 +10,12 @@
     | product "*" atom -> mul
     | product "/" atom -> div
 
+prob_func: "P(" NAME "==" sum ")" -> prob_eq
+    | "P(" NAME ">" sum ")" -> prob_gt
+    | "P(" NAME ">=" sum ")" -> prob_gt_eq
+    | "P(" NAME "<" sum ")" -> prob_lt
+    | "P(" NAME "<=" sum ")" -> prob_lt_eq
+
 ?atom: prob_func
     | NAME "(" paramaters? ")" -> func_call
     | "[" paramaters? "]" -> gen_arr
@@ -18,11 +24,7 @@
     | "(" sum ")"
     | NAME -> get_var
 
-prob_func: "P(" NAME "=" sum ")" -> prob_eq
-    | "P(" NAME ">" sum ")" -> prob_gt
-    | "P(" NAME ">=" sum ")" -> prob_gt_eq
-    | "P(" NAME "<" sum ")" -> prob_lt
-    | "P(" NAME "<=" sum ")" -> prob_lt_eq
+
 
 paramaters: (paramvalue ("," paramvalue)* ("," kwargs)* | kwargs ("," kwargs)* )
 
