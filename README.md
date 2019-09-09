@@ -26,13 +26,8 @@ of 0.3, then compute the probability there are 4 or fewer successes
 ```
 
 ## TODO
-* ~~Handle negative numbers in parsing of P(____)~~
-* ~~Improve error handling for distributions~~
-* ~~Implement printing of distributions in calculator when just the name is input~~
 * Implement help function for distributions, eg Help(Exp) will tell you the
 parameters for the Exponential dist
-* Fix errors caused by redefining variables
-* Change over to use numpy arrays so you can do vector like calculations
 * Implement plotting of functions and probability distributions
 * Web client?
 * Error handling when incorrect number of arguments supplied to function
