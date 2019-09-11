@@ -94,7 +94,7 @@ class EvalLine(Transformer):
         :return: The value of the function called with the specified arguments
         """
         f = funcs[name]["func"]
-        print("args: {}".format(args))
+        # print("args: {}".format(args))
         unpacked = []
         for val in self.unpack_args(args):
             unpacked.append(val)
