@@ -22,6 +22,7 @@ prob_func: "P(" NAME "==" sum ")" -> prob_eq
     | NUMBER -> number
     | "-" atom -> neg
     | "(" sum ")"
+    | /("([^"]|"")*")+/ -> string
     | NAME -> get_var
 
 

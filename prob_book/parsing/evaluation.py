@@ -75,6 +75,10 @@ class EvalLine(Transformer):
     from operator import add,sub,mul,truediv as div,neg
     number = float
 
+    def string(self,x):
+        # Remove " from start and end of str
+        return x[1:-1]
+
     def unpack_args(self,x):
         """
         Unpacks arguments from *args sent by lark and yields them
