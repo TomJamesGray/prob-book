@@ -14,18 +14,21 @@ class StatKernel(Kernel):
     def do_execute(self, code, silent, store_history=True,
                    user_expressions=None, allow_stdin=False):
         if not silent:
-            stream_content = {"name":"stdout","text":parser.parse(code)}
-            self.send_response(self.iopub_socket,"stream",stream_content)
+            code_lines = code.split("\n")
+            for l in code_lines:
+                output = parser.parse(l)
+                if output == None:
+                    stream_content = {"name":"stdout","text":""}
+                else:
+                    stream_content = {"name": "stdout", "text": str("{}\n".format(output))}
+
+                self.send_response(self.iopub_socket,"stream",stream_content)
 
         return {"status":"ok",
                 "execution_count":self.execution_count,
                 "payload":[],
                 "user_expressions":[]
                 }
-    def do_is_complete(self, code):
-        return {
-            "status":"complete"
-        }
 
 def main():
     from ipykernel.kernelapp import IPKernelApp
