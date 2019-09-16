@@ -33,15 +33,17 @@ def to_png(fig):
 
 class Plot:
     def __init__(self):
+        self.refresh()
+
+    def refresh(self):
         self.fig, self.ax = plt.subplots(1, 1, figsize=(6, 4))
 
     def plot(self,x,y,*args):
         kwargs = evaluation.extract_kw_args(args)
 
-        if kwargs.get("add",False):
-            plt.plot(x,y)
-        else:
-            plt.plot(x,y)
+        if not kwargs.get("add",False):
+            self.refresh()
+        plt.plot(x,y)
 
         if "xlab" in kwargs:
             plt.xlabel(kwargs["xlab"])
