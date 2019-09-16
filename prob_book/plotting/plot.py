@@ -32,9 +32,11 @@ def to_png(fig):
     return urllib.parse.quote(base64.b64encode(imgdata.getvalue()))
 
 class Plot:
+    def __init__(self):
+        self.fig, self.ax = plt.subplots(1, 1, figsize=(6, 4))
+
     def plot(self,x,y,*args):
         kwargs = evaluation.extract_kw_args(args)
-        fig,ax = plt.subplots(1,1,figsize=(6,4))
 
         if kwargs.get("add",False):
             plt.plot(x,y)
@@ -50,4 +52,4 @@ class Plot:
         if parser.CLIENT == "terminal":
             plt.show()
         elif parser.CLIENT == "jupyter":
-            return JupyterPlot(fig,ax)
+            return JupyterPlot(self.fig,self.ax)

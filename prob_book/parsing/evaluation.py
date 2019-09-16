@@ -75,6 +75,10 @@ class EvalLine(Transformer):
     from operator import add,sub,mul,truediv as div,neg
     number = float
 
+    def __init__(self,*args,**kwargs):
+        super(EvalLine,self).__init__(*args,**kwargs)
+        self.plot = plot.Plot()
+
     def string(self,x):
         # Remove " from start and end of str
         return x[1:-1]
@@ -102,7 +106,11 @@ class EvalLine(Transformer):
         unpacked = []
         for val in self.unpack_args(args):
             unpacked.append(val)
-        return f(*unpacked)
+
+        if name == "plot":
+            return self.plot.plot(*unpacked)
+        else:
+            return f(*unpacked)
 
     def tilde(self,name,dist):
         """
