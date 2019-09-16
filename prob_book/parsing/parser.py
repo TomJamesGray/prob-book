@@ -7,10 +7,12 @@ from prob_book.parsing import evaluation
 # displays the plot
 CLIENT = "terminal"
 
-def parse(line):
-    parser = Lark.open(os.path.join(os.path.dirname(inspect.stack()[0][1]),"grammar.lark"))
+class Parser:
+    def __init__(self):
+        self.eval = evaluation.EvalLine()
+        self.parser = Lark.open(os.path.join(os.path.dirname(inspect.stack()[0][1]), "grammar.lark"))
 
-    tree = parser.parse(line)
-    # print(tree.pretty())
+    def parse(self,line):
+        tree = self.parser.parse(line)
+        return self.eval.transform(tree)
 
-    return evaluation.EvalLine().transform(tree)
