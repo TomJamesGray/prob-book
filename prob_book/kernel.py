@@ -1,3 +1,4 @@
+import traceback
 from ipykernel.kernelbase import Kernel
 from prob_book.parsing import parser
 from prob_book.plotting.plot import JupyterPlot
@@ -18,7 +19,21 @@ class StatKernel(Kernel):
         if not silent:
             code_lines = code.split("\n")
             for l in code_lines:
-                output = parser.parse(l)
+                try:
+                    output = parser.parse(l)
+                except Exception as e:
+                    self.send_response(self.iopub_socket, 'stream', {"name":"stderr","text":traceback.format_exc()})
+                    return {
+                        "status":"error",
+                        "execution_count":self.execution_count,
+                        "traceback":[],
+                        "ename":"",
+                        "evalue":str(e)
+                    }
+
+
+
+
                 if output == None:
                     stream_content = {"name":"stdout","text":""}
                     self.send_response(self.iopub_socket, "stream", stream_content)
