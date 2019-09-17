@@ -62,7 +62,7 @@ def main():
                                                                              "amount of numbers after the decimal point, "
                                                                              "defaults to 6")
     results = arg_parse.parse_args()
-
+    parser_cls = parser.Parser()
     # Reduce logging if devel is false
     # global logger
     if not results.debug:
@@ -72,7 +72,7 @@ def main():
     while True:
         l = input(">>> ")
         try:
-            res = parser.parse(l)
+            res = parser_cls.parse(l)
         except EqualityForCtsDist:
             print("{}Equality operation can't be used on continuous distribution{}".format(ANSICols.RED,ANSICols.RESET))
             continue
