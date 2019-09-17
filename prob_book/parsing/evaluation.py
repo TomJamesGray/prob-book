@@ -53,15 +53,11 @@ funcs = {
     },
     "Var":{
         "n":1,
-        "func":lambda x: extra_funcs.variance(x)
+        "func":lambda x: x.var()
     },
     "E":{
        "n":1,
-        "func":lambda x:extra_funcs.expectation(x)
-    },
-    "Info":{
-       "n":1,
-        "func":lambda x:extra_funcs.info(x)
+        "func":lambda x:x.expectation()
     },
     # Plotting
     "plot":{
