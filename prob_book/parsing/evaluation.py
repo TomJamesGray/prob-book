@@ -89,6 +89,9 @@ class EvalLine(Transformer):
     def bool_f(self):
         return False
 
+    def pow(self,x,y):
+        return x**y
+
     def unpack_args(self,x):
         """
         Unpacks arguments from *args sent by lark and yields them
