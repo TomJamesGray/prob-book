@@ -1,3 +1,3 @@
 {"argv":["python","-m","prob_book", "-f", "{connection_file}"],
-"display_name":"Stat Analysis",
+"display_name":"Prob Book",
 "language":"stat"}
