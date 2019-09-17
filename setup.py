@@ -13,5 +13,11 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/TomJamesGray/prob-book",
     packages=setuptools.find_packages(),
-    include_package_data=True
+    include_package_data=True,
+    install_requires=[
+        "lark_parser",
+        "ipykernel",
+        "matplotlib",
+        "numpy"
+    ]
 )
