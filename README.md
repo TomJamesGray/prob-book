@@ -20,6 +20,14 @@ pip install prob-book
 python - prob_book.install-kernel
 ```
 
+## Use
+To run the terminal version run the command `prob-book`
+
+To use the jupyter kernel you can:
+* Start the notebook server by running `jupyter notebook` then select "Prob Book"
+from the new notebook menu
+* Run `jupyter console --kernel prob_book`
+
 ## Examples
 Create a standard normal distribution named X and compute P(X<2)
 ```
