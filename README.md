@@ -13,6 +13,13 @@ Currently the distributions implemented and the functions to define them are:
 * Poisson - `Po`
 * Geometric - `Geo`
 
+## Installation
+```
+pip install prob-book
+# Then to install the jupyter kernel run
+python - prob_book.install-kernel
+```
+
 ## Examples
 Create a standard normal distribution named X and compute P(X<2)
 ```
