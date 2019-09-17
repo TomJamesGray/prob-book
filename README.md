@@ -17,7 +17,7 @@ Currently the distributions implemented and the functions to define them are:
 ```
 pip install prob-book
 # Then to install the jupyter kernel run
-python - prob_book.install-kernel
+python -m prob_book.install-kernel
 ```
 
 ## Use
