@@ -36,19 +36,34 @@ class Plot:
         self.refresh()
 
     def refresh(self):
+        """Refreshes the plot"""
         self.fig, self.ax = plt.subplots(1, 1, figsize=(6, 4))
 
     def plot(self,x,y,*args):
+        """
+        Implements the plot function using pyplot
+        :param x: X data
+        :param y: Y data
+        :param args: Allows labels, titles and styles to be set. The syntax for the style
+        is the same as used in regular pyplot
+        """
         kwargs = evaluation.extract_kw_args(args)
 
         if not kwargs.get("add",False):
             self.refresh()
-        plt.plot(x,y)
+
+        if "style" in kwargs:
+            plt.plot(x,y,kwargs["style"])
+        else:
+            plt.plot(x,y)
 
         if "xlab" in kwargs:
             plt.xlabel(kwargs["xlab"])
         if "ylab" in kwargs:
             plt.ylabel(kwargs["ylab"])
+        if "title" in kwargs:
+            plt.title(kwargs["title"])
+
 
 
         if parser.CLIENT == "terminal":

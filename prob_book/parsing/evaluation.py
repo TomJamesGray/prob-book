@@ -83,6 +83,12 @@ class EvalLine(Transformer):
         # Remove " from start and end of str
         return x[1:-1]
 
+    def bool_t(self):
+        return True
+
+    def bool_f(self):
+        return False
+
     def unpack_args(self,x):
         """
         Unpacks arguments from *args sent by lark and yields them
