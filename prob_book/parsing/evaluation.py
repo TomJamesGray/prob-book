@@ -68,8 +68,7 @@ funcs = {
         "func":lambda *args:min(*args)
     },
     "plot":{
-        "n":-1,
-        "func":lambda *args:plot.plot(*args)
+        "n":-1
     }
 }
 
@@ -113,8 +112,6 @@ class EvalLine(Transformer):
         :param args: Arguments to be used by the function
         :return: The value of the function called with the specified arguments
         """
-        f = funcs[name]["func"]
-        # print("args: {}".format(args))
         unpacked = []
         for val in self.unpack_args(args):
             unpacked.append(val)
@@ -122,6 +119,7 @@ class EvalLine(Transformer):
         if name == "plot":
             return self.plot.plot(*unpacked)
         else:
+            f = funcs[name]["func"]
             return f(*unpacked)
 
     def tilde(self,name,dist):
