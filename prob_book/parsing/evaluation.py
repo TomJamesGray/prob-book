@@ -69,6 +69,10 @@ funcs = {
     },
     "plot":{
         "n":-1
+    },
+    "sum":{
+        "n":-1,
+        "func":lambda *args:extra_funcs.sum_f(*args)
     }
 }
 

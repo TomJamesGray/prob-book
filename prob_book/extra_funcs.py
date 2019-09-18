@@ -18,3 +18,15 @@ def pdf(dist,val):
         return dist.pdf(val)
     else:
         raise ValueError("Distribution {} has no pdf".format(dist))
+
+def sum_f(*args):
+    tot = 0
+    for val in args:
+        if type(val) in (float,int):
+            tot += val
+        elif hasattr(val,"__iter__"):
+            tot += sum(val)
+        else:
+            raise ValueError("Value {} isn't numeric or iterable")
+
+    return tot
