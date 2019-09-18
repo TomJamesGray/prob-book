@@ -59,7 +59,10 @@ funcs = {
        "n":1,
         "func":lambda x:x.expectation()
     },
-    # Plotting
+    "max":{
+        "n":-1,
+        "func":lambda *args:max(*args)
+    },
     "plot":{
         "n":-1,
         "func":lambda *args:plot.plot(*args)
