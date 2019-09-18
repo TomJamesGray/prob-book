@@ -63,6 +63,10 @@ funcs = {
         "n":-1,
         "func":lambda *args:max(*args)
     },
+    "min":{
+        "n":-1,
+        "func":lambda *args:min(*args)
+    },
     "plot":{
         "n":-1,
         "func":lambda *args:plot.plot(*args)
