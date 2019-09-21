@@ -61,11 +61,11 @@ funcs = {
     },
     "max":{
         "n":-1,
-        "func":lambda *args:max(*args)
+        "func":lambda *args:extra_funcs.max_f(*args)
     },
     "min":{
         "n":-1,
-        "func":lambda *args:min(*args)
+        "func":lambda *args:extra_funcs.min_f(*args)
     },
     "plot":{
         "n":-1

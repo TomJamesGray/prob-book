@@ -27,6 +27,27 @@ def sum_f(*args):
         elif hasattr(val,"__iter__"):
             tot += sum(val)
         else:
-            raise ValueError("Value {} isn't numeric or iterable")
+            raise ValueError("Value {}, type {}, isn't numeric or iterable".format(val, type(val)))
 
     return tot
+
+def max_f(*args):
+    if type(args[0]) in (float,int):
+        x = args[0]
+    else:
+        x = max(args[0])
+
+    for val in args:
+        if type(val) in (float, int):
+            if val > x:
+                x = val
+        elif hasattr(val, "__iter__"):
+            if max(val) > x:
+                x = max(val)
+        else:
+            raise ValueError("Value {}, type {}, isn't numeric or iterable".format(val,type(val)))
+
+    return x
+
+def min_f(*args):
+    pass
