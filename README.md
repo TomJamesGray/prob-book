@@ -1,7 +1,7 @@
 # Prob Book [![Build Status](https://travis-ci.com/TomJamesGray/prob-book.svg?branch=master)](https://travis-ci.com/TomJamesGray/prob-book)
 Interactive python shell and jupyter notebook kernel
 to calculate probabilities for common statisitcal
-distributions.
+distributions. Documentation can be found in the [Github wiki](https://github.com/TomJamesGray/prob-book/wiki)
 
 ![Image of prob book's jupyter notebook kernel plotting the
 standard normal distribution](jupyter_eg.png)
