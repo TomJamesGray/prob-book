@@ -3,3 +3,6 @@ class EqualityForCtsDist(TypeError):
 
 class MismatchedBrackets(ValueError):
     pass
+
+class IncorrectNumberOfArgs(ValueError):
+    pass

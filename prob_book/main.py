@@ -79,6 +79,8 @@ def main():
         except MismatchedBrackets:
             print("{}Closing bracket count doesn't match opening bracket count{}".format(ANSICols.RED,ANSICols.RESET))
             continue
+        except IncorrectNumberOfArgs:
+            print("{}Incorrect number of arguments supplied to function{}".format(ANSICols.RED, ANSICols.RESET))
         except Exception as e:
             if results.debug:
                 raise e

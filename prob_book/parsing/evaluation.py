@@ -7,6 +7,7 @@ from prob_book.distributions import binomial,exponential,poisson,geometric,norma
 from prob_book import main
 from prob_book.plotting import plot
 from prob_book import extra_funcs
+from prob_book import exceptions
 
 logger = logging.getLogger(__name__)
 
@@ -124,6 +125,16 @@ class EvalLine(Transformer):
             return self.plot.plot(*unpacked)
         else:
             f = funcs[name]["func"]
+            n = funcs[name]["n"]
+            if type(n) == tuple:
+                if len(unpacked) not in n:
+                    raise exceptions.IncorrectNumberOfArgs("{} arguments supplied, should be {} arguments".format(
+                        len(unpacked),n
+                    ))
+            elif n != -1 and n != len(unpacked):
+                raise exceptions.IncorrectNumberOfArgs("{} arguments supplied, should be {} arguments".format(
+                    len(unpacked), n
+                ))
             return f(*unpacked)
 
     def tilde(self,name,dist):
