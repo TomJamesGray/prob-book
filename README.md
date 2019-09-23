@@ -47,4 +47,3 @@ of 0.3, then compute the probability there are 4 or fewer successes
 ## TODO
 * Implement help function for distributions, eg Help(Exp) will tell you the
 parameters for the Exponential dist
-* Error handling when incorrect number of arguments supplied to function
