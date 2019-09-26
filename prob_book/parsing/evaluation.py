@@ -71,6 +71,9 @@ funcs = {
     "plot":{
         "n":-1
     },
+    "bar":{
+        "n":-1
+    },
     "sum":{
         "n":-1,
         "func":lambda *args:extra_funcs.sum_f(*args)
@@ -123,6 +126,8 @@ class EvalLine(Transformer):
 
         if name == "plot":
             return self.plot.plot(*unpacked)
+        elif name == "bar":
+            return self.plot.bar(*unpacked)
         else:
             f = funcs[name]["func"]
             n = funcs[name]["n"]

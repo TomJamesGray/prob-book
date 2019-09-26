@@ -1,4 +1,5 @@
 import urllib,base64
+import copy
 import matplotlib.pyplot as plt
 from io import BytesIO
 from prob_book.parsing import evaluation
@@ -57,6 +58,33 @@ class Plot:
         else:
             plt.plot(x,y)
 
+        self.do_lab_and_title(kwargs)
+        return self.export_plot()
+
+    def bar(self,x,height,*args):
+        """
+        Draws a bar graph
+        :param x: X co-ordinates of the bar
+        :param height: Height of each bar
+        :param args: Accepts the kwargs that can be used by plt.bar
+        :return:
+        """
+        kwargs = evaluation.extract_kw_args(args)
+
+        if not kwargs.get("add", False):
+            self.refresh()
+        kwargs_trim = copy.copy(kwargs)
+        kwargs_trim.pop("xlab",None)
+        kwargs_trim.pop("ylab",None)
+        kwargs_trim.pop("title",None)
+
+        plt.bar(x,height,**kwargs_trim)
+
+        self.do_lab_and_title(kwargs)
+        return self.export_plot()
+
+    def do_lab_and_title(self,kwargs):
+        """Handles label and title kwargs"""
         if "xlab" in kwargs:
             plt.xlabel(kwargs["xlab"])
         if "ylab" in kwargs:
@@ -64,9 +92,10 @@ class Plot:
         if "title" in kwargs:
             plt.title(kwargs["title"])
 
-
-
+    def export_plot(self):
+        """Exports the plot in the correct format for the client"""
         if parser.CLIENT == "terminal":
             plt.show()
+            return None
         elif parser.CLIENT == "jupyter":
             return JupyterPlot(self.fig,self.ax)
