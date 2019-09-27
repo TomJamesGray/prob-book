@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="prob-book",
-    version="0.1",
+    version="0.2",
     scripts=["prob-book"],
     author="Tom Gray",
     description="Interactive terminal and jupyter notebook kernel for probability calculations",
